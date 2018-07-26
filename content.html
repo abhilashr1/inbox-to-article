@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>The Free Stack - Running your application for free on AWS</title>
+  <link rel="stylesheet" href="content_files/katex.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="content_files/font-awesome.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="content_files/bootstrap.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="content_files/main.css"><link rel="stylesheet" href="content_files/css.css">
+  <link rel="stylesheet" href="content_files/css_002.css">
+  <link rel="stylesheet" href="content_files/highlight.css"><link rel="stylesheet" href="content_files/codeblock.css">
+
+
+
+<link rel="stylesheet" href="content_files/photoswipe.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="content_files/default-skin.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+</head><body><div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-71994912-3', 'auto');
+ga('send', 'pageview');
+</script>
+<script async="" src="content_files/analytics.js"></script>
+
+
+
+  
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://p.agnihotry.com/">Parikshit Agnihotry</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="Parikshit Agnihotry" href="http://p.agnihotry.com/">
+            <img class="avatar-img" src="content_files/avatar-icon.jfif" alt="Parikshit Agnihotry">
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>The Free Stack - Running your application for free on AWS</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on July 23, 2018
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 14 minutes (2908 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <link rel="stylesheet" href="content_files/hugo-easy-gallery.css">
+<div class="box">
+  <figure itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+    <div class="img">
+      <img itemprop="thumbnail" src="content_files/AWS_logo.png">
+    </div>
+    <a href="https://res.cloudinary.com/pagnihotry/image/upload/v1532367462/pagnihotry/AWS_logo.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
+<p>We live in interesting times. The cloud offerings from Amazon, Google
+ and Microsoft have led to a situation where world-class infrastructure 
+is available to startups and solopreneurs for very cheap, and most of 
+the times, they can even get started for free.</p>
+
+<p></p>
+
+<p>While standing up a business, it is critical to have a lean operation
+ with a performant, stable and scalable product. This reduces user churn
+ and increases retention. It is important that the online service you 
+provide has high uptime without costing too much and reducing your 
+runway.</p>
+
+<p>In this post, I outline an AWS based architecture which you can most 
+likely run for free during at least the first 12 months and then for a 
+few dollars per month while you build traction for your product. The 
+cost really depends on the amount of traffic you serve and how your 
+application is architected. But, more traffic is hopefully more revenue,
+ which is a good problem to have!</p>
+
+<p>I also discuss estimating the monthly bill based on some assumptions 
+mentioned in the following section. Hopefully, it will help you evaluate
+ various scenarios specific to your product or service for a more 
+predictable bill from your cloud provider.</p>
+
+<h1 id="assumptions">Assumptions</h1>
+
+<p>While calculating the price, I assume the website or service gets 
+about 1,000 user sessions a day and in every session, the user makes 50 
+API requests and 50 requests to static assets (Images, HTML, CSS and 
+Javascript files). The average size of static assets is 50kb, execution 
+time of application code is less than or equal to 100ms per request and 
+memory usage is less than or equal to 128MB per request. The average 
+size of a read from DynamoDB is 20kb and write is 20KB per second. The 
+total size of stored assets on S3 is 15GB and the traffic is split as 
+approximately 50% from US &amp; Canada and 50% from Europe</p>
+
+<p><strong><em>The pricing I discuss in this post is for AWS US-West (Oregon) region. The prices for other regions may vary.</em></strong></p>
+
+<h1 id="architecture">Architecture</h1>
+
+
+
+<div class="box">
+  <figure itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+    <div class="img">
+      <img itemprop="thumbnail" src="content_files/AWS_stack.png">
+    </div>
+    <a href="https://res.cloudinary.com/pagnihotry/image/upload/v1532367730/pagnihotry/AWS_stack.png" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
+<h1 id="pieces">Pieces</h1>
+
+<ol>
+<li>API Gateway</li>
+<li>Lambda</li>
+<li>DynamoDB</li>
+<li>S3</li>
+<li>CloudFront</li>
+<li>DNS &amp; Route 53</li>
+</ol>
+
+<h2 id="api-gateway">API Gateway</h2>
+
+<p>API Gateway is the service to create APIs to access AWS resources. In
+ this setup, API Gateway is used to invoke a function in AWS Lambda. 
+This service forwards the request parameters to AWS Lambda which then, 
+executes the application code and returns a response that is forwarded 
+to the user.</p>
+
+<p>Usage for this service is calculated as a mix of the number of API calls per month and the amount of data transferred.</p>
+
+<p>Product link: <a href="https://aws.amazon.com/api-gateway/">https://aws.amazon.com/api-gateway/</a></p>
+
+<h3 id="pricing">Pricing</h3>
+
+<h4 id="free-tier-12-months">Free Tier - 12 Months</h4>
+
+<p>This service offers 1 million API calls/month in its Free Tier, which
+ means it can support 666 user sessions per day in the Free Tier 
+assuming each user makes about 50 API calls in a session. The Free Tier 
+for this service expires after 12 months.</p>
+
+<h4 id="after-free-tier">After Free Tier</h4>
+
+<p>After the 12 month Free Tier expires, AWS charges $3.50 per million 
+calls and $0.09/GB for first 10 TB. If you expect 1,000 user sessions a 
+day making 50 requests with an average data transfer of 50KB, it adds up
+ to 1.5 Million API calls and 75GB of data transfer per month. Which 
+should cost $12 per month (<code>1.5M*$3.50/M + 75GB*$0.09/GB = $5.25 + $6.75</code>) .</p>
+
+<p>More on pricing: <a href="https://aws.amazon.com/api-gateway/pricing/">https://aws.amazon.com/api-gateway/pricing/</a></p>
+
+<h2 id="aws-lambda">AWS Lambda</h2>
+
+<p>Lambda is the serverless offering of AWS where you can implement 
+functions that are invoked by the API Gateway. The code can be edited 
+inline or uploaded to S3. The usage for this service is defined as a mix
+ of 2 things: number of requests and duration.</p>
+
+<p>The number of requests is pretty straightforward. Where it can get 
+interesting is the duration which is measured in GB-seconds. To 
+calculate GB-seconds for your application, you would multiply the memory
+ usage to the time taken by a request to execute. This is discussed more
+ in the pricing section.</p>
+
+<p>AWS Lambda also enforces certain memory and time limits. This is 
+particularly important while calculating the duration. Minimum memory 
+usage of any function is set at 128 MB and the maximum is 3008 MB (with 
+64 MB increments). If the maximum memory use is exceeded, function 
+invocation is terminated. Similarly, it also measures time in increments
+ of 100ms with a minimum of 100ms and maximum of 300s (5 minutes) in 
+increments of 100ms (more on Lambda limits: <a href="https://docs.aws.amazon.com/lambda/latest/dg/limits.html">https://docs.aws.amazon.com/lambda/latest/dg/limits.html</a>).</p>
+
+<p>Product link: <a href="https://aws.amazon.com/lambda">https://aws.amazon.com/lambda</a></p>
+
+<h3 id="pricing-1">Pricing</h3>
+
+<h4 id="free-tier">Free Tier</h4>
+
+<p>This service is free for 1M request/month, and 400,000 
+GB-seconds/month of compute time. This Free Tier does not expire after 
+12 months.</p>
+
+<p>For instance, if your request executes in 60ms consuming 100MB, AWS 
+lambda will bill you for 100ms and 128MB memory, you would be able to 
+serve 31,250,000 requests  (<code>400,000 GB-seconds/100ms*128MB</code>).
+ 1,000 users sessions with 50 requests a day translates to 1,500,000 
+requests a month which is well below the Free Tier limits.</p>
+
+<h4 id="after-free-tier-1">After Free Tier</h4>
+
+<p>Once your application makes 1M requests AWS charges $0.0000002 per 
+request and after exceeding 400,000 GB-seconds, $0.00001667 for every 
+GB-Second used thereafter. For instance, if your request executes in 
+100ms and consumes 128MB, each request takes in 0.0128 GB-Second. Cost 
+per request comes out to be $0.000000413376 (<code>$0.0000002 + 0.0128*$0.00001667</code>) translating to $0.413376/1M requests.</p>
+
+<p>More on pricing: <a href="https://aws.amazon.com/lambda/pricing/">https://aws.amazon.com/lambda/pricing/</a></p>
+
+<h2 id="dynamodb">DynamoDB</h2>
+
+<p>Dynamo DB is a NoSQL database offered as a service by AWS. DynamoDB 
+defines usage in terms of read and write capacity. 1 write capacity 
+means 1 write/second in 1 KB block and 1 read capacity means 1 strongly 
+consistent read per second, or 2 eventually consistent reads per second 
+in 4KB blocks. This means if you read 1 KB in 4 requests it counts as 4 
+reads compared to reading a bigger chunk, say 3KB in one request, which 
+is considered 1 read.</p>
+
+<p>Data transfer within the same region to other AWS services is free. 
+Reads and writes are averaged in 5 min intervals to calculate the per 
+second values. Estimating the price for this service can get a little 
+complicated. To get a clear picture, try to estimate the amount of the 
+indexed data you will store and the access patterns - reads and writes 
+per second.</p>
+
+<p>Product link: <a href="https://aws.amazon.com/dynamodb/">https://aws.amazon.com/dynamodb/</a></p>
+
+<h3 id="pricing-2">Pricing</h3>
+
+<h4 id="free-tier-1">Free Tier</h4>
+
+<p>In the Free Tier, AWS DynamoDB offers 25 GB of indexed storage, 25 
+units of write capacity and 25 units of read capacity. Data transfer is 
+free within the same region. This Free Tier does not expire after 12 
+months.</p>
+
+<h3 id="after-free-tier-2">After Free Tier</h3>
+
+<p>Once you exceed the Free Tier, the following is the pricing:</p>
+
+<ol>
+<li>$0.00065 WCU per hour</li>
+<li>$0.00013 RCU per hour</li>
+<li>$0.25 per GB-month after 25GB</li>
+</ol>
+
+<p>If you are storing 20KB user data for every user, you can store data 
+for 1.25 million users under the Free Tier limits and $0.000025 per user
+ thereafter.</p>
+
+<p>If you are reading all the 20KB of data for a user per second, 
+strongly consistent, that is 20KB per second. It translates to 5 Read 
+Capacity (<code>20KB/4KB</code>), which is covered by the Free Tier and 
+you still have 20 more read capacity to spare. For every additional user
+ read per second past the Free Tier, it will cost $0.468 per month (<code>5RCU * (30*24)hours * $0.00013 RCU/hour</code>)</p>
+
+<p>Similarly, for writes, 20KB write per second translates to 20 write 
+capacity, which is also covered in Free Tier with 5 write capacity to 
+spare. After the Free Tier, you can expect a full write of 20KB per 
+second to cost $9.36 per month (<code>20 RCU * (30*24) hours * 0.00065 WCU/hour</code>)</p>
+
+<p>Most of the applications are read heavy, which means that they do 
+more reads than writes, in the above example we assumed 1 write for 
+every read.</p>
+
+<p>More on pricing: <a href="https://aws.amazon.com/dynamodb/pricing/">https://aws.amazon.com/dynamodb/pricing/</a></p>
+
+<h2 id="s3">S3</h2>
+
+<p>AWS S3 can be used to store static content like HTML, CSS, JS files 
+or code for lambda function. The usage for this service is defined in 
+terms of Storage used in GB, number of requests and data transferred in 
+GB/month.</p>
+
+<p>Product link: <a href="https://aws.amazon.com/s3/">https://aws.amazon.com/s3/</a></p>
+
+<h3 id="pricing-3">Pricing</h3>
+
+<h4 id="free-tier-12-months-1">Free Tier - 12 months</h4>
+
+<p>Free Tier for S3 includes 5 GB of Amazon S3 storage in the Standard 
+Storage class, 20,000 Get Requests, 2,000 Put Requests, and 15 GB of 
+data transfer out each month. This Free Tier expires after 12 months. 
+The data transfer to CloudFront is free. So, if you use CloudFront as a 
+CDN, as proposed in this architecture, your S3 costs should be $0.</p>
+
+<h4 id="after-free-tier-3">After Free Tier</h4>
+
+<p>Once the Free Tier limits are exceeded or the 12 month trial period 
+is over, the costs are  $0.023 per GB for the first 50TB. PUT, COPY, 
+POST, or LIST Requests cost $0.005 per 1,000 requests and GET, SELECT 
+and all other Requests cost $0.0004 per 1,000 requests. Assuming a 15GB 
+storage, the storage cost should be $0.345 (<code>15GB * $0.023/GB</code>).</p>
+
+<p>For data transfer, the transfer up to 1 GB/month to the internet is 
+free. After that, its $0.09 per GB up to 1TB/Month. But, the transfer to
+ AWS CloudFront is completely free without any limits. So, if you serve 
+the static assets with CloudFront as CDN in front of S3, you do not pay 
+anything for data transfer to CloudFront. The CloudFront pricing is 
+discussed in the next section.</p>
+
+<p>More on pricing: <a href="https://aws.amazon.com/s3/pricing">https://aws.amazon.com/s3/pricing</a></p>
+
+<h2 id="cloudfront">CloudFront</h2>
+
+<p>CloudFront is Amazon’s Content Distribution Network. This is meant to
+ deliver static assets to users substantially faster compared to 
+directly accessing from S3. The usage for this service is defined in 
+terms of data transferred out and the number of requests served.</p>
+
+<p>The pricing for this service varies with regions. This is elaborated more in the following section on pricing.</p>
+
+<p>Product link: <a href="https://aws.amazon.com/CloudFront/">https://aws.amazon.com/CloudFront/</a></p>
+
+<h3 id="pricing-4">Pricing</h3>
+
+<h4 id="free-tier-12-months-2">Free Tier - 12 Months.</h4>
+
+<p>In the Free Tier, AWS offers 50 GB Data Transfer Out and 2,000,000 
+HTTP and HTTPS Requests each month. Free Tier expires after 1 year.</p>
+
+<p>If an average user session for you means about 50 requests of an 
+average asset size 50KB per asset, you have 50 requests per session and 
+2.5MB data transfer per session. With this Free Tier, you can easily 
+scale up to 20,000 user sessions per month, about 666 user sessions per 
+day, before exhausting your data transfer limits.</p>
+
+<p>The average asset size discussed here is the average of images, JS, 
+CSS, HTML, and other assets like fonts that you may serve. To run a lean
+ operation it is important to trim down the assets to be exactly what is
+ needed in your application. In addition to saving you cost it has a 
+much bigger impact of improved user experience with faster load times.</p>
+
+<h4 id="after-free-tier-4">After Free Tier</h4>
+
+<p>After your run out of Free Tier limits or at the end of your free trial, following is the pricing plan for AWS CloudFront.</p>
+
+<p>First 10 TB / month</p>
+
+<table>
+<thead>
+<tr>
+<th>United States &amp; Canada</th>
+<th>Europe</th>
+<th>South Africa</th>
+<th>Japan, Hong Kong, Philippines, S. Korea, Singapore &amp; Taiwan</th>
+<th>India</th>
+<th>Australia</th>
+<th>South America</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>$0.085</td>
+<td>$0.085</td>
+<td>$0.110</td>
+<td>$0.140</td>
+<td>$0.170</td>
+<td>$0.140</td>
+<td>$0.250</td>
+</tr>
+</tbody>
+</table>
+
+<p>Request Pricing for All HTTP Methods (per 10,000)</p>
+
+<table>
+<thead>
+<tr>
+<th>Type of request</th>
+<th>United States &amp; Canada</th>
+<th>Europe</th>
+<th>South Africa</th>
+<th>Japan, Hong Kong, Philippines, S. Korea, Singapore &amp; Taiwan</th>
+<th>India</th>
+<th>Australia</th>
+<th>South America</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>HTTP</td>
+<td>$0.0075</td>
+<td>$0.0090</td>
+<td>$0.0090</td>
+<td>$0.0090</td>
+<td>$0.0090</td>
+<td>$0.0090</td>
+<td>$0.0160</td>
+</tr>
+
+<tr>
+<td>HTTPS</td>
+<td>$0.0100</td>
+<td>$0.0120</td>
+<td>$0.0120</td>
+<td>$0.0120</td>
+<td>$0.0120</td>
+<td>$0.0125</td>
+<td>$0.0220</td>
+</tr>
+</tbody>
+</table>
+
+<p>Based on this pricing, extending the above example, if you get 1,000 
+user sessions a day making about 50 requests per session and the average
+ size of assets is 50KB, it comes out to be about 75GB per month (<code>1,000 users * 50 assets * 50kB/asset * 30 days</code>).
+ With a traffic split assuming 50% from US &amp; Canada and 50% from 
+Europe, it costs about $7.61 a month or $8.03 for HTTPS. If you stay at 
+50GB/month it costs $5.08/month or $5.35 for HTTPS, which is cheap if 
+you take into account that with this set up you provide content delivery
+ around the world with the same or similar latency as Amazon, Hulu, 
+King, Supercell, etc.</p>
+
+<p>More on pricing: <a href="https://aws.amazon.com/CloudFront/pricing">https://aws.amazon.com/CloudFront/pricing</a></p>
+
+<h2 id="dns-route-53">DNS &amp; Route 53</h2>
+
+<p>If you are running a small to medium sized application, the DNS 
+service for any Domain registrar should just work. I prefer Google 
+domains for this as they provide a clean interface which is easy to 
+manage and just works. This gets you 10 million lookups per year (<a href="https://support.google.com/domains/answer/6010092?hl=en">https://support.google.com/domains/answer/6010092?hl=en</a>) which is little over 27,000 per day. Seems pretty adequate for getting started and scaling up to a decent size.</p>
+
+<p>Once you get to a point where these limits start becoming a bottleneck, you can easily reconfigure it to use AWS Route 53.</p>
+
+<p>Product link: <a href="https://aws.amazon.com/route53">https://aws.amazon.com/route53</a></p>
+
+<h3 id="pricing-5">Pricing</h3>
+
+<p>Route 53 does not offer a Free Tier. To set up routing for one 
+domain, it costs $0.50 to create a hosted zone and $0.400 per million 
+queries for the first 1 billion queries/month. If you decide using this 
+service instead of a Domain registrar offered DNS service, you will 
+likely pay less than $0.90 per month for our 1,000 user session per 
+month example.</p>
+
+<p>More on pricing: <a href="https://aws.amazon.com/route53/pricing/">https://aws.amazon.com/route53/pricing/</a></p>
+
+<h2 id="final-bill">Final Bill!</h2>
+
+<p>Based on our assumption of 1,000 user sessions per day with average 
+static assets 50KB, each session consisting of 50 assets requests and 50
+ API calls, following is the bill you can expect.</p>
+
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>First 12 months</th>
+<th>After 12 months</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>API Gateway</td>
+<td>$4</td>
+<td>$12</td>
+</tr>
+
+<tr>
+<td>Lambda</td>
+<td>$0</td>
+<td>$0</td>
+</tr>
+
+<tr>
+<td>DynamoDB</td>
+<td>$0</td>
+<td>$0</td>
+</tr>
+
+<tr>
+<td>S3</td>
+<td>$0.23</td>
+<td>$0.35</td>
+</tr>
+
+<tr>
+<td>CloudFront(HTTP/HTTPS)</td>
+<td>$2.12 / $2.12</td>
+<td>$7.61 / $8.03</td>
+</tr>
+
+<tr>
+<td>DNS &amp; Route 53</td>
+<td>$0</td>
+<td>$0</td>
+</tr>
+
+<tr>
+<td>Total(CloudFront HTTP / HTTPS)</td>
+<td>$6.35</td>
+<td>$19.96 / $20.38</td>
+</tr>
+</tbody>
+</table>
+
+<p>You can see here, all the cost during the first 12 months is coming 
+from S3, CloudFront and API Gateway. You will have $0 bill in first 12 
+months if your S3 storage is below 5GB, CloudFront traffic stays below 
+50GB/Month and API Gateway requests are less than 1 million a month, or 
+you get 666 user sessions a month compared to the 1,000 user sessions I 
+picked while running these calculations.</p>
+
+<h2 id="gotchas-tradeoffs-and-warnings">Gotchas, Tradeoffs, and Warnings</h2>
+
+<ol>
+<li><p><strong>The above architecture is a general recommendation that should work for most applications.</strong>
+ You may need to tweak this or introduce pieces to get more optimal 
+performance. For example, if you are doing something like banking you 
+will need to add a relational database using the RDS service. If you are
+ streaming video/audio, you will have to rethink this. Delivering game 
+assets would require some intelligent caching on the client as well. 
+This will work for a lot of cases, but not all.</p></li>
+
+<li><p><strong>DynamoDB is a NoSQL database.</strong> If your 
+application requires a relational database, look at AWS RDS Sevice. It 
+offers t2.micro for free during the first 12 months. It is fine for 
+development. However, I will not recommend using it in production.</p></li>
+
+<li><p><strong>AWS Lambda has a cold start problem.</strong> If your 
+function suddenly gets a lot of traffic or has not received any traffic 
+for some time, the first request can take a while (seconds) to respond. 
+There are various ways out there to handle this. You should build 
+timeouts in your client to handle this gracefully. Additionally, you 
+could also set up a CloudWatch schedule to poke your function so that it
+ stays alive.</p></li>
+
+<li><p><strong>This post does not discuss usage of a caching layer.</strong> AWS ElastiCache (<a href="https://aws.amazon.com/elasticache/">https://aws.amazon.com/elasticache/</a>)
+ provides Memcached and Redis as a service. Using this can considerably 
+decrease your response times depending on the data access patterns of 
+your application.</p></li>
+
+<li><p><strong>One piece of modern architecture that is not discussed here is the asynchronous execution of jobs.</strong>
+ If you are doing something that takes a while to process, say querying 
+an external service or some data crunching it is best done by queuing 
+the job using AWS SQS and making that data available to the user in the 
+following request, this translates in a better user experience compared 
+to user watching a loading screen on the app waiting for the response.</p></li>
+
+<li><p><strong>One very important point is all these services are pay per use.</strong>
+ You should set up CloudWatch alarms to monitor your usage and stay on 
+top of it. You don’t want to end up with a huge bill because you made a 
+bunch of requests or your lambda functions kept running for longer than 
+they should. Set up throttling, email alerts based on usage and monitor 
+at least daily for discrepancies.</p></li>
+
+<li><p><strong>Consider looking at AWS CloudWatch and AWS CloudTrail.</strong> AWS CloudWatch (<a href="https://aws.amazon.com/cloudwatch/">https://aws.amazon.com/cloudwatch/</a>)
+ allows you to set up alarms for usage on various services that can help
+ you prevent downtime or detect overage in your usage. AWS CloudTrail (<a href="https://aws.amazon.com/cloudtrail/">https://aws.amazon.com/cloudtrail/</a>)
+ helps to track user activity and API usage. This is very useful in 
+debugging or auditing the changes made to your cloud resources.</p></li>
+</ol>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>While looking at all the offerings from the cloud provider you pick, I
+ will recommend that try not to set your self up for vendor lock-in. 
+This means using AWS specific features that don’t work outside can pose a
+ future risk to move away from AWS. If you use AWS Cognito for 
+authentication, make sure you think about how to move away from it, if 
+need be, in case their roadmap and yours don’t align. For instance, if 
+you need Google login and they don’t have one, you may be stuck!</p>
+
+<p>I would also like to bring it up again that <strong>monitor your AWS usage using CloudWatch alarms.</strong> If you don’t have proper limits in place, you may end up with a huge unexpected bill.</p>
+
+<p>Finally, now that we have also talked about estimating pricing based 
+on traffic, feel free to play around with the AWS calculator. You can 
+enter your expected parameters to generate a monthly bill that can help 
+you understand what you may pay based on the usage that you expect: <a href="https://calculator.s3.amazonaws.com/index.html">https://calculator.s3.amazonaws.com/index.html</a></p>
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="http://p.agnihotry.com/post/understanding_the_context_package_in_golang/" data-toggle="tooltip" data-placement="top" title="Understanding the context package in golang">← Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://twitter.com/ParikshitAgni" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/parikshitagnihotry" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="http://p.agnihotry.com/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              Parikshit Agnihotry
+            
+          
+
+          &nbsp;•&nbsp;
+          2018
+
+          
+            &nbsp;•&nbsp;
+            <a href="http://p.agnihotry.com/">Parikshit Agnihotry</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io/">Hugo v0.36.1</a> powered &nbsp;•&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="content_files/katex.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="content_files/auto-render.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="content_files/jquery-1.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="content_files/bootstrap.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="content_files/main.js"></script>
+<script src="content_files/highlight.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="content_files/photoswipe.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="content_files/photoswipe-ui-default.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="content_files/load-photoswipe.js"></script>
+
+
+
+
+
+
+  
+
+
+</body></html>

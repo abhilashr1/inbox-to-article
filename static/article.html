@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <title>Tests Blog</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="article_files/pure-min.css">
+        <link rel="stylesheet" href="article_files/grids-responsive-min.css">
+        <link rel="stylesheet" href="article_files/font-awesome.css">
+        <link rel="stylesheet" href="article_files/main.css">
+<script type="text/javascript" async="" src="article_files/embed.js"></script><link rel="prefetch" as="style" href="article_files/a_data/lounge.css"><link rel="prefetch" as="script" href="article_files/a_data/common.js"><link rel="prefetch" as="script" href="article_files/a_data/lounge.js"><link rel="prefetch" as="script" href="article_files/a_data/config.js"></head>
+<body>
+
+    <div class="navigation pure-menu pure-menu-horizontal">
+        <a href="https://onur.github.io/medius/" class="pure-menu-heading  pure-menu-link">Medius</a>
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item"></li>
+
+            <li class="pure-menu-item"><a href="https://onur.github.io/medius/pages/page.html" class="pure-menu-link">Page</a></li>
+            <li class="pure-menu-item pure-menu-selected"><a href="https://onur.github.io/medius/category/category.html" class="pure-menu-link">Category</a></li>
+        </ul>
+    </div>
+
+
+<div class="page-container">
+    <div class="entry-content">
+        <div class="post-meta pure-g">
+            <div class="pure-u">
+                <a href="https://onur.github.io/medius/category/category.html"><img src="article_files/220px-NGC_3923_Elliptical_Shell_Galaxy.jpg" class="post-avatar" alt="Category"></a>
+            </div>
+            <div class="pure-u-3-4 meta-data">
+                <a href="https://onur.github.io/medius/category/category.html" class="category">Category</a><br>
+
+                <a class="author" href="https://onur.github.io/medius/author/onur-aslan.html">Onur Aslan</a>
+                — <abbr title="2015-09-11T00:00:00+03:00">Fri 11 September 2015</abbr>
+            </div>
+        </div>
+    </div>
+
+    <div class="article-header-container">
+        <div class="background-image-container">
+
+            <div class="background-image" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Hubble2005-01-barred-spiral-galaxy-NGC1300.jpg/1920px-Hubble2005-01-barred-spiral-galaxy-NGC1300.jpg);">
+                <img src="article_files/1920px-Hubble2005-01-barred-spiral-galaxy-NGC1300.jpg" alt="Medius">
+                <div class="title">
+                <h1>
+                    Test
+                </h1>
+                <h2>
+                    Here is my list of curated emails
+                </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="entry-content">
+
+<!-- Article -->
+{% for item in articles %}
+        <li><a href="/user/{{ item.title }}">{{ item.title }}</a></li>
+    {% endfor %}
+
+    </div>
+
+    <footer>
+        <div class="pure-g post-footer">
+            <div class="pure-u-1 pure-u-md-1-2">
+                <div class="pure-g poster-info">
+                    <div class="pure-u">
+                        <a href="https://onur.github.io/medius/author/onur-aslan.html"><img src="article_files/photo.jpg" alt=""></a>
+                    </div>
+                    <div class="pure-u-3-4">
+                        <h3 class="author-name"><a href="https://onur.github.io/medius/author/onur-aslan.html">Onur Aslan</a></h3>
+                        <p class="author-description">
+                          
+            And where does the newborn go from here? The net is vast and infinite.
+        
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="pure-u-1 pure-u-md-1-2">
+
+                
+
+            </div>
+
+        </div>
+
+
+    </footer>
+
+
+</div>
+
+
+
+    <footer class="index-footer">
+
+        <a href="https://onur.github.io/medius/" title="Medius">Medius</a>
+        <a href="https://onur.github.io/medius/pages/page.html">Page</a>
+        <a href="https://onur.github.io/medius/category/category.html">Category</a>
+        <a href="http://getpelican.com/">Pelican</a>
+        <a href="http://python.org/">Python.org</a>
+        <a href="http://jinja.pocoo.org/">Jinja2</a>
+
+    </footer>
+
+
+<iframe style="display: none;"></iframe></body></html>
